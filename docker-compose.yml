@@ -1,14 +1,22 @@
+# this docker-compose file is used to build a solr instance and a little api in go
 version: '3.4'
 services:
   occ_solr:
     container_name: occ_solr
     image: solr:8.11
     ports:
-     - "8983:8983"
+      - "8983:8983"
     volumes:
       - data:/var/solr
+    # to create a default core
     command:
       - solr-precreate
       - jcg_example_core
+
+  occ_solr_api:
+    build: .
+    container_name: occ_solr_api
+    ports:
+      - "8080:8080"
 volumes:
   data:
