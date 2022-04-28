@@ -69,14 +69,23 @@ func search(w http.ResponseWriter, request *http.Request) {
 		queryString = "*:*"
 	}
 
-	fmt.Println(queryString)
+	//fmt.Println(queryString)
 
 	query.Q(queryString)
 	query.AddParam("q.op", "OR")
+
+	// configuring some facets
+	query.AddParam("facet", "true")
+	query.AddParam("facet.field", "categoria")
+	query.AddParam("facet.field", "salario")
+
 	fmt.Println(query)
 
 	s := solrConection.Search(query)
 	r, _ := s.Result(nil)
+
+	fmt.Println("==========================")
+	fmt.Println(r.FacetCounts)
 
 	var data []solr.Document = r.Results.Docs
 	var results []jobPosition

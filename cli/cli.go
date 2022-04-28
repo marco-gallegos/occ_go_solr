@@ -85,6 +85,7 @@ func main() {
 	var size int = len(updates)
 	fmt.Println(size, updates)
 	solrConection.Add(updates, size, nil)
-	//solrConection.Commit()
 
+	//TODO: how to avoid duplicate entries?
+	solrConection.Commit()
 }
