@@ -34,8 +34,21 @@ func TestSolrQuery(t *testing.T) {
 	}
 }
 
-func TestAExpectedSolrQuery() {
+func TestAExpectedSolrQuery(t *testing.T) {
+	value := "desarrollador sr"
+	expectedQueryString := ""
+	expectedQueryString += "titulo:" + value + "\n"
+	expectedQueryString += "cuerpo:" + value + "\n"
+	expectedQueryString += "localidad:" + value + "\n"
+	expectedQueryString += "salario:" + value + "\n"
+	expectedQueryString += "categoria:" + value + "\n"
 
+	queryString := ""
+	queryString = solrpackage.AddParameterToQ(queryString, value)
+
+	if queryString != expectedQueryString {
+		t.Error("Solr query form failed")
+	}
 }
 
 // ===================================================================================

@@ -8,7 +8,7 @@ import (
 	"github.com/vanng822/go-solr/solr"
 )
 
-func addParametertoQ(currentQuery string, value string) string {
+func AddParameterToQ(currentQuery string, value string) string {
 	currentQuery += "titulo:" + value + "\n"
 	currentQuery += "cuerpo:" + value + "\n"
 	currentQuery += "localidad:" + value + "\n"
@@ -31,23 +31,23 @@ func Search(w http.ResponseWriter, request *http.Request) {
 	var queryString string = ""
 
 	if titulo != "" {
-		queryString = addParametertoQ(queryString, titulo)
+		queryString = AddParameterToQ(queryString, titulo)
 	}
 
 	if cuerpo != "" {
-		queryString = addParametertoQ(queryString, cuerpo)
+		queryString = AddParameterToQ(queryString, cuerpo)
 	}
 
 	if localidad != "" {
-		queryString = addParametertoQ(queryString, localidad)
+		queryString = AddParameterToQ(queryString, localidad)
 	}
 
 	if salario != "" {
-		queryString = addParametertoQ(queryString, salario)
+		queryString = AddParameterToQ(queryString, salario)
 	}
 
 	if categoria != "" {
-		queryString = addParametertoQ(queryString, categoria)
+		queryString = AddParameterToQ(queryString, categoria)
 	}
 
 	if queryString == "" {
