@@ -5,7 +5,7 @@ services:
     container_name: occ_solr
     image: solr:8.11
     ports:
-      - "8983:8983"
+      - 8983:8983
     volumes:
       - data:/var/solr
     # to create a default core
@@ -17,7 +17,7 @@ services:
     build: .
     container_name: occ_solr_api
     ports:
-      - "8080:8080"
+      - 8088:8080
     environment:
       - SOLR_URL=http://192.168.0.111:8983/solr
       - SOLR_CORE=jcg_example_core

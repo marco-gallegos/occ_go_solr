@@ -1,9 +1,11 @@
 FROM golang:alpine AS build
-WORKDIR /go/src/myapp
-COPY . .
-RUN go build -o /go/bin/myapp main.go
 
-FROM scratch
-COPY --from=build /go/bin/myapp /go/bin/myapp
+WORKDIR /go/src/solrapi
+
+COPY . .
+
+RUN go build -o /go/bin/solrapi main.go
+
 EXPOSE 8080
-ENTRYPOINT ["/go/bin/myapp"]
+
+CMD /go/bin/solrapi
